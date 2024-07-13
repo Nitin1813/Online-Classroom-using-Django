@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Mark Attendance for {{ course.title }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <input type="date" name="date">
+    {% for student in students %}
+      <div>
+        <label>{{ student.user.username }}</label>
+        <input type="checkbox" name="present_{{ student.id }}">
+      </div>
+    {% endfor %}
+    <button type="submit">Save Attendance</button>
+  </form>
+{% endblock %}

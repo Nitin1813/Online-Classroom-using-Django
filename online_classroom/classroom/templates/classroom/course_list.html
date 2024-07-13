@@ -1,0 +1,49 @@
+{% extends 'base_generic.html' %}
+{% block title %}Courses{% endblock %}
+
+{% block extra_head %}
+    <style>
+        body {
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .course-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .course-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .btn-add {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Courses</h1>
+    <ul class="course-list">
+        {% for course in courses %}
+            <li>
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+                <a href="{% url 'assignment_list' course.id %}" class="btn btn-primary">View Assignments</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_course' %}" class="btn btn-add">Add Course</a>
+    <a href="{% url 'add_assignment' %}" class="btn btn-add">Add Assignment</a>
+{% endblock %}
